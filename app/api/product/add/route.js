@@ -3,6 +3,7 @@ import { getAuth } from "@clerk/nextjs/server";
 import authSeller from "@/lib/authSeller";
 import connectDB from "@/config/db";
 import Product from "@/models/Product";
+import { NextResponse } from "next/server"
 
 // Configure Cloudinary
 
@@ -30,7 +31,7 @@ export async function POST(request) {
         const price = formData.get('price');
         const offerPrice = formData.get('offerPrice');
 
-        const files = formData.getAll('image');
+        const files = formData.getAll('images');
     
         if(!files || files.length === 0){
             return NextResponse.json({success: false, message: "No files uploaded"})
