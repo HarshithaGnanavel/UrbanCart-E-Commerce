@@ -3,7 +3,6 @@ import { NextResponse } from "next/server"
 import connectDB from "@/config/db"
 import User from "@/models/User"
 
-
 export async function GET(request) {
     try{
 
@@ -12,11 +11,13 @@ export async function GET(request) {
         await connectDB()
         const user = await User.findById(userId);
 
-        if(!user){
+        const { cartItems } = user
+
+        /*if(!user){
             return NextResponse.json({success: false, message: "User Not Found"})
         }
 
-        const { cartItems } = user
+        const { cartItems } = user*/
 
         return NextResponse.json({success: true, cartItems})
 
